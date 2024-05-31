@@ -1,0 +1,9 @@
+# Schedule the FetchUserDataJob
+fetch_user_data:
+  cron: '0 * * * *' # Every hour
+  class: FetchUserDataJob
+
+# Schedule the CalculateDailyRecordJob 
+calculate_daily_record:
+  cron: '59 23 * * *' # At the end of the day
+  class: CalculateDailyRecordJob

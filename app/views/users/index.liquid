@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <link rel="stylesheet" type="text/css" href="/assets/user_list.css">
+  </head>
+
+  <body>
+    <div id="list-record">
+      <!-- Your content -->
+      <h1>List of Users</h1>
+      <p>Total Users: {{ users.size }}</p>
+      <form method="get" action="/users">
+        <input type="text" name="search" placeholder="Search by name" value="{{ params['search'] }}">
+        <button type="submit">Search</button>
+      </form>
+      {% if users %}
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Created At</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+              <tr class="record">
+                <td>{{ user['name'] }}</td>
+                <td>{{ user['age'] }}</td>
+                <td>{{ user['gender'] }}</td>
+                <td>{{ user['created_at'] }}</td>
+                <td>
+                  <form method="post" action="/users/{{ user.id }}">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No users found</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
