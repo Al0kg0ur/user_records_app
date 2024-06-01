@@ -2,7 +2,7 @@ class DailyRecordsController < ApplicationController
   def index
     @daily_records = DailyRecord.all.map do |dr|
       {
-        "date" => dr.date,
+        "date" => dr.date&.strftime("%d %B %Y at %H:%M %p"),
         "male_count" => dr.male_count,
         "female_count" => dr.female_count,
         "male_avg_age" => dr.male_avg_age,

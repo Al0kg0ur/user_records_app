@@ -10,11 +10,13 @@
     <div id="list-record">
       <!-- Your content -->
       <h1>List of Users</h1>
-      <p>Total Users: {{ users.size }}</p>
-      <form method="get" action="/users">
-        <input type="text" name="search" placeholder="Search by name" value="{{ params['search'] }}">
-        <button type="submit">Search</button>
-      </form>
+      <p><b>Total Users:</b> {{ users.size }}</p>
+      <p>
+        <form method="get" action="/users">
+          <input type="text" name="search" placeholder="Search by name" value="{{ params['search'] }}">
+          <button type="submit">Search</button>
+        </form>
+      </p>
       {% if users %}
         <table>
           <thead>

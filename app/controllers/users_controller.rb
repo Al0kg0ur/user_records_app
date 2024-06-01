@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     @users = @users.map do |user|
       {
         "id" => user.id,
-        "name" => "#{user.name['first']} #{user.name['last']}",
+        "name" => "#{user.name['first']} #{user.name['last']}"&.titleize,
         "age" => user.age,
-        "gender" => user.gender,
-        "created_at" => "#{user.created_at}"
+        "gender" => user.gender&.titleize,
+        "created_at" => "#{user.created_at&.strftime("%d %B %Y at %H:%M %p")}"
       }
     end
     render_liquid("users/index", users: @users)
